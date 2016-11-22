@@ -15,18 +15,12 @@
 
 Route::get('/', function () {
 
-
-    if (Session::has('user')) {
-
-        return Redirect::to('app/Inicio');
-    } else {
-
-        return Redirect::to('app/login');
-    }
+    return Redirect::to('app/Inicio');
 });
 
 
 Route::get('app', function () {
+
     return Redirect::to('/');
 });
 

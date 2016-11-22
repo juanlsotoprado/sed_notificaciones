@@ -16,11 +16,7 @@ class AppController extends Controller {
      */
     public function __construct() {
 
-
-        if (!Session::has('user')) {
-
-            return redirect('/');
-        }
+        $this->middleware('Auth_ldap');
     }
 
     public function Index() {

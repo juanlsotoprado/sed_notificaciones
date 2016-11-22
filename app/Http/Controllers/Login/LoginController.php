@@ -22,13 +22,7 @@ class LoginController extends Controller {
      */
     public function Index() {
 
-        if (Session::has('user')) {
-
-            return redirect('/');
-        } else {
-
-            return view("Login/Login");
-        }
+        return view("Login/Login");
     }
 
     public function Cerrar_Sesion() {
@@ -62,8 +56,10 @@ class LoginController extends Controller {
 
 
         if (!Session::has('user')) {
+            
+            Session::put('error', true);
 
-            Session::flash('error', true);
+            error_log(print_r(Session::all(), true));
         }
 
         return redirect('/');

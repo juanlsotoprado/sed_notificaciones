@@ -66,7 +66,7 @@
 
                 <!--                <div class="row" >
                                     <img   style="height:  115px;  border-bottom: 1px solid #eee;width: 100%" class="img-responsive col-lg-12" alt=""
-                                           src="<?php // echo base_url('publico/img/intensivos2015.png');      ?>">
+                                           src="<?php // echo base_url('publico/img/intensivos2015.png');          ?>">
                 
                                     </div> 
                                 </div>-->
@@ -119,20 +119,24 @@ function valida_correo(username) {
 
                 </script>
 
+                @if (Session::has('error'))
 
-                <?php if (Session::has('error')) { ?>
-                    <script>
-                        $(document).ready(function () {
+                @php
+                Session::forget('error');
+                @endphp
 
-                            $('.error').fadeIn(600).delay(300).fadeOut(400).fadeIn(400).fadeOut(400).fadeIn(300).fadeOut(300);
+                <script>
+                    $(document).ready(function () {
+
+                        $('.error').fadeIn(600).delay(300).fadeOut(400).fadeIn(400).fadeOut(400).fadeIn(300).fadeOut(300);
 
 
-                        });
-                    </script>
+                    });
+                </script>
 
-                    <?php
-                }
-                ?>
+                @endif    
+
+
                 <script>
 
 
