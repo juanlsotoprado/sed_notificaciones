@@ -14,22 +14,17 @@ class AppController extends Controller {
      * @param  int  $id
      * @return Response
      */
+
     public function __construct() {
-
-        $this->middleware('Auth_ldap');
-        $this->middleware('route_inic', ['only' => ['Index']]);
         
+        $this->params = (object)[];
     }
 
-    public function Index() {
+    public function Inicio() {
 
-        return view("Pages/index");
-    }
-    
-     public function Inicio() {
+        $this->params->page = "inicio";
 
-        return view("Pages/index");
+        return view("Pages/inicio", ['params' => $this->params]);
     }
- 
 
 }

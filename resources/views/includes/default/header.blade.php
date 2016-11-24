@@ -47,9 +47,27 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav " id="side-menu">
 
+
+                @if (Session::get('id_perfil') == 1)
+
                 <li>
-                    <a href="" class=''><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Inicio</a>
+                    <a href="{{ url('admin/Inicio')}}" class='{{ $params->page == "inicio"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Inicio</a>
                 </li>
+
+                @endif
+
+                @if (Session::get('id_perfil') == 4)
+
+                <li>
+                    <a href="{{ url('admin/Inicio')}}" class='{{ $params->page == "inicio"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Inicio</a>
+                </li>
+                <li>
+                    <a href="{{ url('admin/Cargar_notificaciones')}}" class='{{ $params->page == "Cargar_notificaciones"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Cargar notificaciones</a>
+                </li>
+
+                @endif
+
+
 
 
             </ul>

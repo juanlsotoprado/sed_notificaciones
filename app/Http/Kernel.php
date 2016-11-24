@@ -50,7 +50,10 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'Auth_ldap' => \App\Http\Middleware\Auth_ldap::class,
+        
         'route_inic' => \App\Http\Middleware\route_inic::class,
+         'RoleMiddleware' => \App\Http\Middleware\RoleMiddleware::class,
+        
 
 
     ];

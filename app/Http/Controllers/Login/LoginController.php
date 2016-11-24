@@ -20,7 +20,6 @@ class LoginController extends Controller {
      * @param  int  $id
      * @return Response
      */
-
     public function Cerrar_Sesion() {
 
         Session::flush();
@@ -51,9 +50,8 @@ class LoginController extends Controller {
         }
 
         if (!Session::has('user')) {
-            
-            Session::put('error', true);
 
+            Session::put('error', true);
         }
 
         return redirect('/');
@@ -79,6 +77,19 @@ class LoginController extends Controller {
             }
         } catch (SoapFault $exp) {
             error_log(print_r($exp->getMessage()));
+        }
+    }
+
+    public function VerificarPerfil() {
+        $sesion_sistem = new SesionModel();
+
+        $internal_user = new InternalUsersModel();
+        $params = $internal_user->existingUser(Session::get('numcedula'));
+
+        if ($params) {
+
+            $respuesta['user_internal'] = $params;
+            $sesion_sistem->SetSesionPerfil($respuesta);
         }
     }
 

@@ -12,7 +12,13 @@
  */
 
 
-Route::get('/', 'App\AppController@Index');
+Route::group(['middleware' => ['Auth_ldap', 'RoleMiddleware:0']], function () {
+
+    Route::get('/', function () {
+        return view("Login/Login");
+    });
+});
+
 
 
 Route::get('login', function () {
@@ -23,13 +29,24 @@ Route::post('login', 'Login\LoginController@Validar_Ususario');
 Route::get('logout', 'Login\LoginController@Cerrar_Sesion');
 
 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['middleware' => 'RoleMiddleware:1', 'prefix' => 'admin'], function() {
+
+    Route::get('/', function () {
+
+        return Redirect::to('admin/Inicio');
+    });
 
     Route::get('Inicio', 'App\AppController@Inicio');
+});
 
-//
-//    Route::get('/', function () {
-//
-//        return Redirect::to('admin/Inicio');
-//    });
+
+
+Route::group(['middleware' => 'RoleMiddleware:4', 'prefix' => 'analista'], function() {
+
+    Route::get('/', function () {
+
+        return Redirect::to('analista/Inicio');
+    });
+
+    Route::get('Inicio', 'App\AppController@Inicio');
 });

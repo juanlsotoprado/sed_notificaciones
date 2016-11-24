@@ -16,6 +16,12 @@ class SesionModel extends Model {
         Session::put('oficina', $params['oficina']);
         Session::put('id_usuario', $params['user_internal']['id_usuario']);
         Session::put('id_perfil', $params['user_internal']['id_perfil']);
+        Session::put('nombre_perfil', $params['user_internal']['nombre_perfil']);
+    }
+    
+     public function SetSesionPerfil($params) {
+         
+         Session::put('id_perfil', $params['user_internal']['id_perfil']);
          Session::put('nombre_perfil', $params['user_internal']['nombre_perfil']);
     }
 
