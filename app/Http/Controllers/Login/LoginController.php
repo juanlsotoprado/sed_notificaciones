@@ -20,10 +20,6 @@ class LoginController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function Index() {
-
-        return view("Login/Login");
-    }
 
     public function Cerrar_Sesion() {
 
@@ -54,12 +50,10 @@ class LoginController extends Controller {
             $sesion_sistem->SetSesion($respuesta);
         }
 
-
         if (!Session::has('user')) {
             
             Session::put('error', true);
 
-            error_log(print_r(Session::all(), true));
         }
 
         return redirect('/');

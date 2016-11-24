@@ -17,11 +17,19 @@ class AppController extends Controller {
     public function __construct() {
 
         $this->middleware('Auth_ldap');
+        $this->middleware('route_inic', ['only' => ['Index']]);
+        
     }
 
     public function Index() {
 
         return view("Pages/index");
     }
+    
+     public function Inicio() {
+
+        return view("Pages/index");
+    }
+ 
 
 }

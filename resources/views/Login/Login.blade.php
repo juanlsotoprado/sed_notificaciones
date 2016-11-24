@@ -2,7 +2,7 @@
 @section('title') Notificaciones SED @stop
 
 @section('content')
-<form class="form col-md-12 center-block" action="{{ url('app/login') }}" method="post" >
+<form class="form col-md-12 center-block" action="{{ url('login') }}" method="post" >
 
     <div  class="panel panel-primary">
 

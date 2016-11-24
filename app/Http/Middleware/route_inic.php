@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Illuminate\Support\Facades\Session;
+use Closure;
 
-class Auth_ldap {
+class route_inic {
 
     /**
      * Handle an incoming request.
@@ -15,13 +15,17 @@ class Auth_ldap {
      * @return mixed
      */
     public function handle($request, Closure $next) {
-        
 
-        if (!Session::has('user')) {
 
-            return redirect('login');
+
+        switch (Session::get('id_perfil') == 1) {
+            case 1:
+                return redirect('admin/Inicio');
+                break;
+
+            default :
+                return redirect('logout');
         }
-       
 
         return $next($request);
     }

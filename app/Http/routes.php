@@ -12,25 +12,24 @@
  */
 
 
+Route::get('/', 'App\AppController@Index');
 
-Route::get('/', function () {
 
-    return Redirect::to('app/Inicio');
+Route::get('login', function () {
+    return view("Login/Login");
 });
 
-
-Route::get('app', function () {
-
-    return Redirect::to('/');
-});
-
-
+Route::post('login', 'Login\LoginController@Validar_Ususario');
 Route::get('logout', 'Login\LoginController@Cerrar_Sesion');
 
 
-Route::group(['prefix' => 'app'], function() {
+Route::group(['prefix' => 'admin'], function() {
 
-    Route::get('login', 'Login\LoginController@Index');
-    Route::post('login', 'Login\LoginController@Validar_Ususario');
-    Route::get('Inicio', 'App\AppController@Index');
+    Route::get('Inicio', 'App\AppController@Inicio');
+
+//
+//    Route::get('/', function () {
+//
+//        return Redirect::to('admin/Inicio');
+//    });
 });
