@@ -121,18 +121,18 @@ Notificaciones Sed
 
                             <tbody class="table_bandeja_apro_tbody">
                                 <tr>
-                                     @if($params['data']['users'])
+                                    @if($params['data']['users'])
                                     @php
                                     $i = 1; 
                                     @endphp
                                     @foreach ($params['data']['users'] as $user)
-                                  
+
                                     <td style="color:#337ab7; font-weight: bold"> {{$i}}</td>
                                     <td>{{ $user -> cedula}} </td>
                                     <td>{{ $user -> nombre_apellido}} </td>
                                     <td>{{ $user -> descripcion}} </td>
                                     <td>{{ $user -> estatus}} </td>
-                                    
+
                                     @php
                                     $i++; 
                                     @endphp
@@ -142,7 +142,7 @@ Notificaciones Sed
                                         <button  ng-click="cambiar_estatus(x.cedula, x.estatus == 't' ? 'false' : 'true', x.estatus == 't' ? 'inactivar' : 'activar')" href="javascript:void(0)"   ng-class="x.estatus == 't' ? 'btn-danger' : 'btn - success'" class="btn  btn-xs ">hola</button>
                                     </td>
                                 </tr>
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -153,7 +153,7 @@ Notificaciones Sed
 
 
         </div>
-
+        <br><br>
     </div>
     <!-- /.col-lg-12 -->
 

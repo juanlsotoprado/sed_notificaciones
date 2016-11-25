@@ -25,8 +25,8 @@ class AdminController extends Controller {
 
         $this->params['data']['users'] = $internal_user->Buscar_usuario_sistem();
 
-        //  dd($this->params->data);
-        return view("Pages/admin/admin_usuario", ['params' => $this->params]);
+          //dd($this->params);
+        return view("Pages/administracion/admin_usuario", ['params' => $this->params]);
     }
 
 }
