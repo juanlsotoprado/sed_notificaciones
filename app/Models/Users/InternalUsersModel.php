@@ -12,7 +12,7 @@ class InternalUsersModel extends Model {
         $users = DB::table('usuario')
                 ->join('perfil', 'usuario.id_perfil', '=', 'perfil.id')
                 ->select('usuario.*', 'perfil.descripcion')
-                ->where('cedula', '=', $cedula)
+                ->where('usuario.cedula', '=', $cedula)
                 ->get();
 
         if ($users) {
@@ -26,7 +26,6 @@ class InternalUsersModel extends Model {
                 $params['id_perfil'] = $user->id_perfil;
                 $params['nombre_apellido'] = $user->nombre_apellido;
                 $params['nombre_perfil'] = $user->descripcion;
-                
             }
 
             return $params;
@@ -35,6 +34,25 @@ class InternalUsersModel extends Model {
         //   error_log(print_r($params, true));
 
         return false;
+}
+
+    public function Buscar_usuario_sistem() {
+
+        $users = DB::table('usuario')
+                ->join('perfil', 'usuario.id_perfil', '=', 'perfil.id')
+                ->select('usuario.*', 'perfil.descripcion')
+                ->orderBy('usuario.id', 'DESC')
+                ->get();
+        
+        if ($users) {
+
+            return $users;
+        }
+
+        return false;
     }
+    
+    
+
 
 }

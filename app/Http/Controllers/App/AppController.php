@@ -14,16 +14,15 @@ class AppController extends Controller {
      * @param  int  $id
      * @return Response
      */
-
     public function __construct() {
-        
-        $this->params = (object)[];
+
+        $this->params = array();
     }
 
     public function Inicio() {
 
-        $this->params->page = "inicio";
-
+        $this->params['page'] = "inicio";
+        
         return view("Pages/inicio", ['params' => $this->params]);
     }
 

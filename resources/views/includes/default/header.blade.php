@@ -32,8 +32,6 @@
                 </li>
             </ul>
 
-
-
             <!-- /.dropdown-user -->
         </li>
 
@@ -51,7 +49,13 @@
                 @if (Session::get('id_perfil') == 1)
 
                 <li>
-                    <a href="{{ url('admin/Inicio')}}" class='{{ $params->page == "inicio"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Inicio</a>
+                    <a href="{{ url('admin/Inicio')}}" class='{{ $params['page'] == "inicio"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Inicio</a>
+                </li>
+                <li>
+                    <a href="{{ url('admin/admin_usuario')}}" class='{{ $params['page'] == "admin_usuario"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Admin. de usuario</a>
+                </li>
+                <li>
+                    <a href="{{ url('admin/Cargar_notificaciones')}}" class='{{ $params['page'] == "Cargar_notificaciones"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Cargar notificaciones</a>
                 </li>
 
                 @endif
@@ -59,21 +63,16 @@
                 @if (Session::get('id_perfil') == 4)
 
                 <li>
-                    <a href="{{ url('admin/Inicio')}}" class='{{ $params->page == "inicio"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Inicio</a>
+                    <a href="{{ url('admin/Inicio')}}" class='{{ $params['page'] == "inicio"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Inicio</a>
                 </li>
                 <li>
-                    <a href="{{ url('admin/Cargar_notificaciones')}}" class='{{ $params->page == "Cargar_notificaciones"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Cargar notificaciones</a>
+                    <a href="{{ url('admin/Cargar_notificaciones')}}" class='{{ $params['page'] == "Cargar_notificaciones"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Cargar notificaciones</a>
                 </li>
 
                 @endif
 
-
-
-
             </ul>
         </div>
 
-        <!-- /.sidebar-collapse -->
     </div>
-    <!-- /.navbar-static-side -->
 </nav>

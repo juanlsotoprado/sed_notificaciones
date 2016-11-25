@@ -12,8 +12,7 @@
   
 }
 body,html {
-    background: white;
-    background: url('../../img/fondo.jpeg') ;
+    background: url('../../img/fondonuevo.png') #33353C;
     background-repeat: repeat;
 
     background-attachment: fixed;
@@ -66,7 +65,7 @@ a:hover,a:active {
 .barra-top,.footer {
 
     background-image:url('../../img/fondo2.jpg') ;
-
+    background-color: #DCDDE2;
 }
 
 .navbar-default .navbar-brand {

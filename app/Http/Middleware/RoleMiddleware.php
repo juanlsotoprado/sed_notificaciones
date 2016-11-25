@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Login\LoginController;
 
-
 class RoleMiddleware {
 
     /**
@@ -17,29 +16,28 @@ class RoleMiddleware {
      * @return mixed
      */
     public function handle($request, Closure $next, $role) {
-        
-           $login = new LoginController();
-           $login->VerificarPerfil();
+
+        $login = new LoginController();
+        $login->VerificarPerfil();
 
         if (Session::get('id_perfil') != $role) {
 
             switch (Session::get('id_perfil')) {
                 case 1:
-                    return redirect('admin/Inicio');
+                    return redirect('admin');
                     break;
 
                 case 4:
-                    return redirect('analista/Inicio');
+                    return redirect('analista');
                     break;
 
                 default :
+                    error_log('perfil de usuario no encontrado');
                     return redirect('logout');
-
             }
         }
 
-     //   error_log($role);
-
+        //   error_log($role);
         return $next($request);
     }
 

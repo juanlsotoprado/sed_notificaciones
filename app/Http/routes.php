@@ -37,6 +37,8 @@ Route::group(['middleware' => 'RoleMiddleware:1', 'prefix' => 'admin'], function
     });
 
     Route::get('Inicio', 'App\AppController@Inicio');
+    Route::get('admin_usuario', 'Admin\AdminController@admin_usuario');
+
 });
 
 

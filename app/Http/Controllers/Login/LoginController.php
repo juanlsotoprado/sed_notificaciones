@@ -44,9 +44,9 @@ class LoginController extends Controller {
 
                 $respuesta['user'] = $usser;
                 $respuesta['user_internal'] = $params;
+                
+                $sesion_sistem->SetSesion($respuesta);
             }
-
-            $sesion_sistem->SetSesion($respuesta);
         }
 
         if (!Session::has('user')) {
