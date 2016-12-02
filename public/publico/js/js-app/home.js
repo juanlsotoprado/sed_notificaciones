@@ -5,8 +5,20 @@ var mppeuct = angular.module('mppeuct', ['ngSanitize', 'ngProgressLite', 'textAn
 
 
 mppeuct.controller('app', ["$scope", "$window", "$rootScope", 'ngProgressLite', '$timeout', function ($scope, $window, $rootScope, ngProgressLite, $timeout) {
-        $rootScope.base_url = base_url;
-        $rootScope.base_url_doc = base_url + 'privado/docs/';
         $rootScope.mostrar_reg = false;
 
     }]);
+
+mppeuct.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});

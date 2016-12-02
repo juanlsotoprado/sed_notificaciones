@@ -38,7 +38,4 @@
 <script src="{{ url('publico/js/js-app/administracion.js')}}"type="text/javascript"></script>
 
 
-<script > var base_url = "<?php echo URL::to('/'); ?>" </script>
-
-
 

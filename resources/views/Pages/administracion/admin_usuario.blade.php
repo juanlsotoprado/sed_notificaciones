@@ -28,7 +28,7 @@ Notificaciones Sed
                         <label class="control-label control-label col-lg-3 col-md-3 col-xs-12">Buscar funcionario:</label>
                         <div class="control-label col-lg-9 col-md-9 col-xs-12">
                             <div class="input-group">
-                                <input type="text"   ng-change="formData = {};" placeholder="Usuario ej: jsoto" ng-model="usuario" class="form-control"   name="usuario" required>
+                                <input autocomplete="off" type="text" ng-enter="buscarUsusario(usuario)"  ng-change="formData = {};" placeholder="Usuario ej: jsoto" ng-model="usuario" class="form-control"   name="usuario" required>
                                 <span
                                     class="input-group-btn ">
                                     <button  ng-click="buscarUsusario(usuario)" 
@@ -82,7 +82,7 @@ Notificaciones Sed
 
                             <button  ng-click="Form_usuario.$valid != false
 
-                                            ? registrar() : ''" 
+                                        ? registrar() : ''" 
 
                                      ng-class="Form_usuario.$valid != false
 
@@ -133,11 +133,11 @@ Notificaciones Sed
                                     <td>{{ $user->cedula}} </td>
                                     <td>{{ $user->nombre_apellido}} </td>
                                     <td>{{ $user->descripcion}} </td>
-                                     <td <?=   $user->estatus != 1 ? 'class="text-danger"' : 'class="text-success"' ?> >{{ $user->estatus != 1?'Inactivo':'Activo' }} </td>
+                                    <td <?= $user->estatus != 1 ? 'class="text-danger"' : 'class="text-success"' ?> >{{ $user->estatus != 1?'Inactivo':'Activo' }} </td>
 
                                     <td style="text-align: left;">
 
-                                        <button  ng-click="cambiar_estatus(<?=   $user->cedula ?>,<?=   $user->estatus == 1 ? "'false'": "'true'" ?>,<?=   $user->estatus == 1 ? "'inactivar'" : "'activar'" ?>)" href="javascript:void(0)"   class="btn  btn-xs <?=   $user->estatus == 1 ? 'btn-danger' : 'btn-success' ?>">{{$user->estatus == 1 ?'Inactivar':'Activar'}}<div class="ripple-container"></div></button>
+                                        <button  ng-click="cambiar_estatus(<?= $user->cedula ?>,<?= $user->estatus == 1 ? "'false'" : "'true'" ?>,<?= $user->estatus == 1 ? "'inactivar'" : "'activar'" ?>)" href="javascript:void(0)"   class="btn  btn-xs <?= $user->estatus == 1 ? 'btn-danger' : 'btn-success' ?>">{{$user->estatus == 1 ?'Inactivar':'Activar'}}<div class="ripple-container"></div></button>
 
                                     </td>
                                 </tr>

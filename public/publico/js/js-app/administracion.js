@@ -5,6 +5,11 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
         $scope.datos_registro = {};
 
 
+        $scope.redirec_admin = function () {
+            $timeout(function () {
+                $window.location = "/admin/admin_usuario";
+            },0);
+        };
 
         $scope.cambiar_estatus = function (cedula, estatus, estatus_clave) {
 
@@ -23,12 +28,12 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
 
                     $http({
                         method: 'POST',
-                        url: $scope.base_url + "/admin/set_estatus",
+                        url:  "/admin/set_estatus",
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                         data: $.param({cedula: cedula, estatus: estatus}),
                     }).then(function successCallback(respuesta) {
                         respuesta = respuesta.data;
-                       // console.log(respuesta);
+                        // console.log(respuesta);
 
                         if (String(respuesta.casos).trim() != 'false') {
                             $.jAlert({
@@ -38,10 +43,16 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                                 'size': 'auto',
                                 'showAnimation': 'bounceInDown',
                                 'hideAnimation': 'bounceOutDown',
-                                'btns': {'text': 'Aceptar', 'theme': 'black', 'onClick': function () {
+                                'closeOnEsc': true,
+                                'btns': {'text': 'Aceptar', 'theme': 'black',
+                                    'onClick': function () {
 
-                                        $window.location = $scope.base_url + "/admin/admin_usuario";
-                                    }}
+                                        $scope.redirec_admin();
+
+                                    }},
+                                'onClose': function () {
+                                    $scope.redirec_admin();
+                                }
                             });
                         } else {
                             $.jAlert({
@@ -51,7 +62,8 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                                 'size': 'auto',
                                 'showAnimation': 'bounceInDown',
                                 'hideAnimation': 'bounceOutDown',
-                                'btns': {'text': 'Aceptar', 'theme': 'black'}
+                                'btns': {'text': 'Aceptar', 'theme': 'black'},
+                                'closeOnEsc': true,
                             });
                         }
 
@@ -63,7 +75,8 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                             'size': 'auto',
                             'showAnimation': 'bounceInDown',
                             'hideAnimation': 'bounceOutDown',
-                            'btns': {'text': 'Aceptar', 'theme': 'black'}
+                            'btns': {'text': 'Aceptar', 'theme': 'black'},
+                            'closeOnEsc': true,
                         });
                         console.log('error');
 
@@ -99,12 +112,12 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
 
                     $http({
                         method: 'POST',
-                        url: $scope.base_url + "/admin/registrar_modificar_funcionario",
+                        url:  "/admin/registrar_modificar_funcionario",
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                         data: $.param($scope.formData),
                     }).then(function successCallback(respuesta) {
                         respuesta = respuesta.data;
-                       // console.log(respuesta);
+                        // console.log(respuesta);
 
                         if (String(respuesta.casos).trim() != 'false') {
 
@@ -115,11 +128,14 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                                 'size': 'auto',
                                 'showAnimation': 'bounceInDown',
                                 'hideAnimation': 'bounceOutDown',
+                                'closeOnEsc': true,
                                 'btns': {'text': 'Aceptar', 'theme': 'black',
                                     'onClick': function () {
-
-                                        $window.location = $scope.base_url + "/admin/admin_usuario";
+                                        $scope.redirec_admin();
                                     }},
+                                'onClose': function () {
+                                    $scope.redirec_admin();
+                                }
                             });
                             $scope.formData = {};
                             //$rootScope.get_secciones2();
@@ -132,7 +148,8 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                                 'size': 'auto',
                                 'showAnimation': 'bounceInDown',
                                 'hideAnimation': 'bounceOutDown',
-                                'btns': {'text': 'Aceptar', 'theme': 'black'}
+                                'btns': {'text': 'Aceptar', 'theme': 'black'},
+                                'closeOnEsc': true,
                             });
                         }
 
@@ -145,7 +162,8 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                             'size': 'auto',
                             'showAnimation': 'bounceInDown',
                             'hideAnimation': 'bounceOutDown',
-                            'btns': {'text': 'Aceptar', 'theme': 'black'}
+                            'btns': {'text': 'Aceptar', 'theme': 'black'},
+                            'closeOnEsc': true,
                         });
                         console.log('error');
 
@@ -159,7 +177,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
 
         $http({
             method: 'POST',
-            url: $scope.base_url + "/admin/get_perfiles",
+            url:  "/admin/get_perfiles",
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         }).then(function successCallback(respuesta) {
             respuesta = respuesta.data;
@@ -205,7 +223,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                 var data = {funcionario: usuario};
                 $http({
                     method: 'POST',
-                    url: $scope.base_url + "/admin/get_user",
+                    url:  "/admin/get_user",
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     data: $.param(data)
                 }).then(function successCallback(respuesta) {
@@ -221,7 +239,8 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                             'size': 'auto',
                             'showAnimation': 'bounceInDown',
                             'hideAnimation': 'bounceOutDown',
-                            'btns': {'text': 'Aceptar', 'theme': 'black'}
+                            'btns': {'text': 'Aceptar', 'theme': 'black'},
+                            'closeOnEsc': true,
                         });
 
                     } else {
@@ -253,7 +272,8 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                         'size': 'auto',
                         'showAnimation': 'bounceInDown',
                         'hideAnimation': 'bounceOutDown',
-                        'btns': {'text': 'Aceptar', 'theme': 'black'}
+                        'btns': {'text': 'Aceptar', 'theme': 'black'},
+                        'closeOnEsc': true,
                     });
                     console.log('error');
 
@@ -263,12 +283,13 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
 
                 $.jAlert({
                     'title': '¡Error!.',
-                    'content': 'El campo funcionario no debe estar vacio.',
+                    'content': 'El campo funcionario no debe estar vacio.w',
                     'theme': 'black',
                     'size': 'auto',
                     'showAnimation': 'bounceInDown',
                     'hideAnimation': 'bounceOutDown',
-                    'btns': {'text': 'Aceptar', 'theme': 'black'}
+                    'btns': {'text': 'Aceptar', 'theme': 'black'},
+                    'closeOnEsc': true,
                 });
 
 
