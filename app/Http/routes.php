@@ -19,8 +19,6 @@ Route::group(['middleware' => ['Auth_ldap', 'RoleMiddleware:0']], function () {
     });
 });
 
-
-
 Route::get('login', function () {
     return view("Login/Login");
 });
@@ -38,6 +36,12 @@ Route::group(['middleware' => 'RoleMiddleware:1', 'prefix' => 'admin'], function
 
     Route::get('Inicio', 'App\AppController@Inicio');
     Route::get('admin_usuario', 'Admin\AdminController@admin_usuario');
+
+    Route::post('get_user', 'Admin\AdminJsonController@get_usuario');
+    Route::post('get_perfiles', 'Admin\AdminJsonController@get_perfiles');
+    Route::post('registrar_modificar_funcionario', 'Admin\AdminJsonController@registrar_modificar_funcionario');
+    Route::post('set_estatus', 'Admin\AdminJsonController@set_estatus');
+
 
 });
 

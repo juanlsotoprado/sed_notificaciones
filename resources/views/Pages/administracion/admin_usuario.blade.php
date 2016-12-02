@@ -9,7 +9,7 @@ Notificaciones Sed
 <!-- /.row -->
 <div class="row  col-lg-12 ">
     <div class="carga_body animated fadeIn" ng-controller="Administracion" style="display: none">
-        <form id="solicitante_form" method="post" name="Form_usuario"
+        <form id="Form_usuario" method="post" name="Form_usuario"
               class="form-horizontal inicio"> 
 
             <h3><em style="color: #666">Administrar Funcionarios<hr></em></h3>
@@ -21,19 +21,21 @@ Notificaciones Sed
                     <h4>Registrar/Modificar Funcionarios</h4>
 
                 </div>
+              <!--<pre> @{{Form_usuario.usuario.$error.required | json : spacing}}</pre>-->
+
                 <div class="panel-body" >
                     <div class="form-group">
                         <label class="control-label control-label col-lg-3 col-md-3 col-xs-12">Buscar funcionario:</label>
                         <div class="control-label col-lg-9 col-md-9 col-xs-12">
                             <div class="input-group">
-
-                                <input ng-change="formData = {};" placeholder="Usuario ej: jsoto" type="text"
-                                       class="form-control  " ng-model="usuario" required> <span
-                                       class="input-group-btn " name="usuario">
+                                <input type="text"   ng-change="formData = {};" placeholder="Usuario ej: jsoto" ng-model="usuario" class="form-control"   name="usuario" required>
+                                <span
+                                    class="input-group-btn ">
                                     <button  ng-click="buscarUsusario(usuario)" 
                                              class="btn btn-info buscar_numerocedula" type="button">
                                         <i class="fa fa-search"></i>&nbsp; Buscar
                                     </button>
+
                                 </span>
                             </div>
                             <span class="label-red" ng-if="Form_usuario.$dirty && Form_usuario.usuario.$error.required">Campo Requerido</span>
@@ -45,7 +47,7 @@ Notificaciones Sed
                         <label class="control-label control-label col-lg-3 col-md-3 col-xs-12">Nombre y Apellido:</label>
 
                         <label   id="nombre_usuario" class="control-label col-lg-9 col-md-9 col-xs-12"
-                                 style="text-align: left; color: #777;"></label>
+                                 style="text-align: left; color: #777;"> @{{formData.nombreApellido}}</label>
 
                     </div>
                     <div class="form-group" ng-show ="formData.nombreApellido">
@@ -84,7 +86,7 @@ Notificaciones Sed
 
                                      ng-class="Form_usuario.$valid != false
 
-                                                 ? '' : 'disabled'" type="button" class="submit btn  btn-primary  "> </button>
+                                                 ? '' : 'disabled'" type="button" class="submit btn  btn-primary ">  @{{modificar != true?'Registrar':'Modificar'}}</button>
 
                         </div>
 
@@ -120,28 +122,31 @@ Notificaciones Sed
                             </thead>
 
                             <tbody class="table_bandeja_apro_tbody">
+                                @if($params['data']['users'])
+                                @php
+                                $i = 1; 
+                                @endphp
+                                @foreach ($params['data']['users'] as $user)
                                 <tr>
-                                    @if($params['data']['users'])
-                                    @php
-                                    $i = 1; 
-                                    @endphp
-                                    @foreach ($params['data']['users'] as $user)
 
                                     <td style="color:#337ab7; font-weight: bold"> {{$i}}</td>
-                                    <td>{{ $user -> cedula}} </td>
-                                    <td>{{ $user -> nombre_apellido}} </td>
-                                    <td>{{ $user -> descripcion}} </td>
-                                    <td>{{ $user -> estatus}} </td>
+                                    <td>{{ $user->cedula}} </td>
+                                    <td>{{ $user->nombre_apellido}} </td>
+                                    <td>{{ $user->descripcion}} </td>
+                                     <td <?=   $user->estatus != 1 ? 'class="text-danger"' : 'class="text-success"' ?> >{{ $user->estatus != 1?'Inactivo':'Activo' }} </td>
 
-                                    @php
-                                    $i++; 
-                                    @endphp
-                                    @endforeach
-                                    @endif
                                     <td style="text-align: left;">
-                                        <button  ng-click="cambiar_estatus(x.cedula, x.estatus == 't' ? 'false' : 'true', x.estatus == 't' ? 'inactivar' : 'activar')" href="javascript:void(0)"   ng-class="x.estatus == 't' ? 'btn-danger' : 'btn - success'" class="btn  btn-xs ">hola</button>
+
+                                        <button  ng-click="cambiar_estatus(<?=   $user->cedula ?>,<?=   $user->estatus == 1 ? "'false'": "'true'" ?>,<?=   $user->estatus == 1 ? "'inactivar'" : "'activar'" ?>)" href="javascript:void(0)"   class="btn  btn-xs <?=   $user->estatus == 1 ? 'btn-danger' : 'btn-success' ?>">{{$user->estatus == 1 ?'Inactivar':'Activar'}}<div class="ripple-container"></div></button>
+
                                     </td>
                                 </tr>
+                                @php
+                                $i++; 
+                                @endphp
+                                @endforeach
+                                @endif
+
 
                             </tbody>
                         </table>

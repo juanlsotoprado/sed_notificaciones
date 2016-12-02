@@ -23,7 +23,7 @@ class AppController extends Controller {
 
         $this->params['page'] = "inicio";
         
-        return view("Pages/inicio", ['params' => $this->params]);
+        return view("Pages/Common/inicio", ['params' => $this->params]);
     }
 
 }

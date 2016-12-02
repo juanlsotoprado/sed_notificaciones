@@ -76,6 +76,7 @@
     </div>
     <!-- /#wrapper -->
 
+                @include('includes.default.scripts')
 
 </body>
 </html>

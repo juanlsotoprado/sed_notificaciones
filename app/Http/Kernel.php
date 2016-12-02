@@ -53,6 +53,8 @@ class Kernel extends HttpKernel
         'Auth_ldap' => \App\Http\Middleware\Auth_ldap::class,
         'route_inic' => \App\Http\Middleware\route_inic::class,
         'RoleMiddleware' => \App\Http\Middleware\RoleMiddleware::class,
+        'Json' => \App\Http\Middleware\Json::class,
+
         
     ];
 }

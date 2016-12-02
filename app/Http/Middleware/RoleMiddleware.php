@@ -18,7 +18,10 @@ class RoleMiddleware {
     public function handle($request, Closure $next, $role) {
 
         $login = new LoginController();
-        $login->VerificarPerfil();
+        if (!$login->VerificarPerfil()) {
+
+            return redirect('logout');
+        }
 
         if (Session::get('id_perfil') != $role) {
 

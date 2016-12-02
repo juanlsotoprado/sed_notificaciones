@@ -44,7 +44,7 @@ class LoginController extends Controller {
 
                 $respuesta['user'] = $usser;
                 $respuesta['user_internal'] = $params;
-                
+
                 $sesion_sistem->SetSesion($respuesta);
             }
         }
@@ -90,6 +90,10 @@ class LoginController extends Controller {
 
             $respuesta['user_internal'] = $params;
             $sesion_sistem->SetSesionPerfil($respuesta);
+            return true;
+        } else {
+
+            return false;
         }
     }
 
