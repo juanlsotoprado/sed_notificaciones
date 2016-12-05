@@ -31,5 +31,17 @@ class AdminController extends Controller {
         //dd($this->params);
         return view("Pages/administracion/admin_usuario", ['params' => $this->params]);
     }
+
+    public function cargar_notificaciones() {
+
+        $this->params['page'] = "cargar_notificaciones";
+        $internal_user = new InternalUsersModel();
+
+        $this->params['data']['users'] = $internal_user->Buscar_usuario_sistem();
+
+        //dd($this->params);
+        return view("Pages/administracion/cargar_notificaciones", ['params' => $this->params]);
+    }
+    
     
 }

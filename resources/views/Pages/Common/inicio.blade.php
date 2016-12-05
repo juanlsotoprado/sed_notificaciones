@@ -7,7 +7,7 @@ Notificaciones Sed
 @section('content')
 <br>
 <!-- /.row -->
-<div class="row col-lg-12 " ng-controller="Inicio">
+<div  class="row col-lg-12 animated fadeIn" ng-controller="Inicio">
     <h3><em style="color: #666">Bienvenido(a) al Sistema de Notificaciones.<hr></em></h3>
 
     <div class="panel panel-primary">

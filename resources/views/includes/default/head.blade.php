@@ -30,7 +30,7 @@
 
         <link href=" {{ url('publico/styles/styles-app/style.css')}}" rel="stylesheet">
 
-        <link rel="stylesheet" href="http://textangular.com/dist/textAngular.css" type="text/css">
+<!--        <link rel="stylesheet" href="http://textangular.com/dist/textAngular.css" type="text/css">-->
 
 
 

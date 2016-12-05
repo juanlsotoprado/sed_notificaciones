@@ -8,7 +8,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
         $scope.redirec_admin = function () {
             $timeout(function () {
                 $window.location = "/admin/admin_usuario";
-            },0);
+            }, 0);
         };
 
         $scope.cambiar_estatus = function (cedula, estatus, estatus_clave) {
@@ -28,7 +28,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
 
                     $http({
                         method: 'POST',
-                        url:  "/admin/set_estatus",
+                        url: "/admin/set_estatus",
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                         data: $.param({cedula: cedula, estatus: estatus}),
                     }).then(function successCallback(respuesta) {
@@ -43,7 +43,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                                 'size': 'auto',
                                 'showAnimation': 'bounceInDown',
                                 'hideAnimation': 'bounceOutDown',
-                                'closeOnEsc': true,
+                                'closeOnEsc': true, 'closeOnClick': true,
                                 'btns': {'text': 'Aceptar', 'theme': 'black',
                                     'onClick': function () {
 
@@ -63,7 +63,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                                 'showAnimation': 'bounceInDown',
                                 'hideAnimation': 'bounceOutDown',
                                 'btns': {'text': 'Aceptar', 'theme': 'black'},
-                                'closeOnEsc': true,
+                                'closeOnEsc': true, 'closeOnClick': true,
                             });
                         }
 
@@ -76,7 +76,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                             'showAnimation': 'bounceInDown',
                             'hideAnimation': 'bounceOutDown',
                             'btns': {'text': 'Aceptar', 'theme': 'black'},
-                            'closeOnEsc': true,
+                            'closeOnEsc': true, 'closeOnClick': true,
                         });
                         console.log('error');
 
@@ -112,7 +112,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
 
                     $http({
                         method: 'POST',
-                        url:  "/admin/registrar_modificar_funcionario",
+                        url: "/admin/registrar_modificar_funcionario",
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                         data: $.param($scope.formData),
                     }).then(function successCallback(respuesta) {
@@ -128,7 +128,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                                 'size': 'auto',
                                 'showAnimation': 'bounceInDown',
                                 'hideAnimation': 'bounceOutDown',
-                                'closeOnEsc': true,
+                                'closeOnEsc': true, 'closeOnClick': true,
                                 'btns': {'text': 'Aceptar', 'theme': 'black',
                                     'onClick': function () {
                                         $scope.redirec_admin();
@@ -149,7 +149,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                                 'showAnimation': 'bounceInDown',
                                 'hideAnimation': 'bounceOutDown',
                                 'btns': {'text': 'Aceptar', 'theme': 'black'},
-                                'closeOnEsc': true,
+                                'closeOnEsc': true, 'closeOnClick': true,
                             });
                         }
 
@@ -163,7 +163,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                             'showAnimation': 'bounceInDown',
                             'hideAnimation': 'bounceOutDown',
                             'btns': {'text': 'Aceptar', 'theme': 'black'},
-                            'closeOnEsc': true,
+                            'closeOnEsc': true, 'closeOnClick': true,
                         });
                         console.log('error');
 
@@ -177,7 +177,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
 
         $http({
             method: 'POST',
-            url:  "/admin/get_perfiles",
+            url: "/admin/get_perfiles",
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         }).then(function successCallback(respuesta) {
             respuesta = respuesta.data;
@@ -223,7 +223,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                 var data = {funcionario: usuario};
                 $http({
                     method: 'POST',
-                    url:  "/admin/get_user",
+                    url: "/admin/get_user",
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     data: $.param(data)
                 }).then(function successCallback(respuesta) {
@@ -240,7 +240,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                             'showAnimation': 'bounceInDown',
                             'hideAnimation': 'bounceOutDown',
                             'btns': {'text': 'Aceptar', 'theme': 'black'},
-                            'closeOnEsc': true,
+                            'closeOnEsc': true, 'closeOnClick': true,
                         });
 
                     } else {
@@ -273,7 +273,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                         'showAnimation': 'bounceInDown',
                         'hideAnimation': 'bounceOutDown',
                         'btns': {'text': 'Aceptar', 'theme': 'black'},
-                        'closeOnEsc': true,
+                        'closeOnEsc': true, 'closeOnClick': true,
                     });
                     console.log('error');
 
@@ -289,7 +289,7 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                     'showAnimation': 'bounceInDown',
                     'hideAnimation': 'bounceOutDown',
                     'btns': {'text': 'Aceptar', 'theme': 'black'},
-                    'closeOnEsc': true,
+                    'closeOnEsc': true, 'closeOnClick': true, 'closeOnClick': true,
                 });
 
 
@@ -330,4 +330,152 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
             $rootScope.show = true;
             $rootScope.show2 = true;
         }, 0);
+    }]);
+
+
+
+mppeuct.controller('cargar_notificaciones', ["$scope", "$window", "$rootScope", 'ngProgressLite', '$timeout', '$http', '$location', 'textAngularManager', function ($scope, $window, $rootScope, ngProgressLite, $timeout, $http, $location, textAngularManager) {
+        ngProgressLite.start();
+        $scope.formData = {};
+        $scope.datos_registro = {};
+        $scope.una = '10';
+        extScope = $scope;
+
+        $('#calc').fileinput({
+            language: 'es',
+            uploadUrl: "procesar_notificaciones", // server
+            browseClass: 'btn btn-raised btn-primary  btn-sm',
+            removeClass: 'btn btn-raised btn-danger  btn-sm',
+            uploadClass: 'btn btn-raised btn-success  btn-sm',
+            //dropZoneTitle: 'Arrastrar y soltar los archivos aquí &hellip;',
+            // overwriteInitial: false,
+            uploadAsync: false,
+            previewFileType: "xls",
+            allowedFileExtensions: ['xls'],
+            maxFileCount: 1,
+            elErrorContainer: "#errorBlockcalc",
+            uploadExtraData: function () {
+                return {
+                    arch: "adjunto",
+                    numero_ficha: 10,
+                    codigo: "leoleo",
+                    _token: $("input[name='_token']").val()
+                };
+            },
+            btnDefault: '<button type="{type}" tabindex="500" title="{title}" class="{css}"{status}>{icon}{label}</button>',
+        });
+
+
+        $('#calc').on('filecustomerror', function (event, files, extra) {
+            $('#calc').fileinput('clear');
+        });
+
+        $('#calc').on('fileuploaded', function (event, files, extra) {
+            $('#calc').fileinput('clear');
+        });
+
+        $('#calc').on('filebatchuploadcomplete', function (event, files, extra) {
+            $('#calc').fileinput('clear');
+        });
+
+        $('#calc').on('filebatchuploadsuccess', function (event, data, previewId, index) {
+            var form = data.form, files = data.files, extra = data.extra,
+                    response = data.response, reader = data.reader;
+
+            extScope.$apply(function () {
+                
+                console.log(response.datos);
+
+                extScope.correos = response.datos;
+
+                if (response.mensaje == "exito") {
+
+                    extScope.correos = response.datos;
+                } else if (response.mensaje == "error2") {
+
+
+                    var msg = "<b style='color:black;font-size:16px'>Problemas al cargar el archivo, se consiguieron campos con formatos no válidos.</b><br><br><br>";
+
+                    if (response.datos) {
+
+                        angular.forEach(response.datos, function (value2, key2) {
+
+                            msg += " * <b>linea: <em style='color :red;'>" + value2.linea + "</em></b> / <b>dato: <em style='color :red;'>" + value2.valor + "</em></b><hr></b>";
+
+                        });
+
+                    }
+
+                    $.jAlert({
+                        'title': '¡Error!.',
+                        'content': msg,
+                        'theme': 'gray',
+                        'size': 'auto',
+                        'showAnimation': 'bounceInDown',
+                        'hideAnimation': 'bounceOutDown',
+                        'btns': {'text': 'Aceptar', 'theme': 'black'},
+                        'closeOnEsc': true, 'closeOnClick': true, 'closeOnClick': true
+                    });
+
+
+                } else {
+
+
+                    $.jAlert({
+                        'title': '¡Error!.',
+                        'content': 'Problemas al cargar el archivo, intente de nuevo.',
+                        'theme': 'black',
+                        'size': 'auto',
+                        'showAnimation': 'bounceInDown',
+                        'hideAnimation': 'bounceOutDown',
+                        'btns': {'text': 'Aceptar', 'theme': 'black'},
+                        'closeOnEsc': true, 'closeOnClick': true, 'closeOnClick': true
+                    });
+                }
+
+
+                //  console.log(response);
+
+
+            })
+            $('#calc').fileinput('clear');
+
+
+        });
+
+        $timeout(function () {
+
+            $('.tabla_consulta').DataTable({
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+            });
+
+            $(".carga_body").css("display", "block");
+            ngProgressLite.done();
+            $rootScope.show = true;
+            $rootScope.show2 = true;
+        }, 0);
+
     }]);

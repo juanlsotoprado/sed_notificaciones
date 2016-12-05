@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Notificaciones Sed
+Administrar Funcionarios
 @stop
 
 @section('content')
