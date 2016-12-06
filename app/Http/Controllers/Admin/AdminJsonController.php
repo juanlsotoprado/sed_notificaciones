@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Common;
 use App\Models\Users\InternalUsersModel;
+use App\Models\Evaluacion\EvaluacionModel;
 use Illuminate\Http\Request;
-use Storage;
 use Spreadsheet_Excel_Reader;
 
 class AdminJsonController extends Controller {
@@ -95,7 +95,7 @@ class AdminJsonController extends Controller {
 
             $mime = $request->file('calc')->getMimeType();
             $extension = strtolower($request->file('calc')->getClientOriginalExtension());
-            $fileName = "calc-" . date_timestamp_get($fecha) . "." . $extension;
+            $fileName = "calc." . $extension;
             $path = "privado/docs/";
 
             switch ($mime) {
@@ -109,52 +109,97 @@ class AdminJsonController extends Controller {
                             $data = new Spreadsheet_Excel_Reader();
                             $data->setOutputEncoding('CP1251');
                             $data->read(public_path() . "/" . $path . $fileName);
-                            $formato = false;
-                            // error_log(print_r($data->sheets[0]['cells'], true));
-                            foreach ($data->sheets[0]['cells'] as $key => $value) {
+                            $formatoCount = 0;
+                            //  error_log(print_r($data->sheets[0]['cells'], true));
 
-                                if (!preg_match("/^[1-9]{3}[0-9]{7}$/", $value[1])) {
+                            if (!empty($data->sheets[0]['cells'])) {
+                                foreach ($data->sheets[0]['cells'] as $key => $value) {
+                                    if ($key > 1) {
+
+                                        for ($i = 1; $i < 5; $i++) {
+                                            $dataxls[$i] = empty($value[$i]) ? '' : utf8_encode($value[$i]);
+                                        }
+
+                                        $dataxls_final[] = $dataxls;
+
+                                        if ($dataxls[1] == '' && $formatoCount < 30) {
+
+                                            $formato[$key . "-A"]['valor'] = $dataxls[1];
+                                            $formato[$key . "-A"]['linea'] = $key . " - A";
+                                            $formato[$key . "-A"]['error'] = "Campo vacio";
+                                            $formatoCount++;
+                                        } else if (!preg_match("/^[1-9]*$/", $dataxls[1]) && $formatoCount < 30) {
+
+                                            $formato[$key . "-A"]['valor'] = $dataxls[1];
+                                            $formato[$key . "-A"]['linea'] = $key . " - A";
+                                            $formato[$key . "-A"]['error'] = "El campo debe ser numérico";
+                                            $formatoCount++;
+                                        }
+
+                                        if ($dataxls[2] == '' && $formatoCount < 30) {
+
+                                            $formato[$key . "-B"]['valor'] = $dataxls[2];
+                                            $formato[$key . "-B"]['linea'] = $key . " - B";
+                                            $formato[$key . "-B"]['error'] = "Campo vacio";
+                                            $formatoCount++;
+                                        }
+
+                                        if ($dataxls[3] == '' && $formatoCount < 30) {
+
+                                            $formato[$key . "-C"]['valor'] = $dataxls[3];
+                                            $formato[$key . "-C"]['linea'] = $key . " - C";
+                                            $formato[$key . "-C"]['error'] = "Campo vacio";
+                                            $formatoCount++;
+                                        } else if (!preg_match("/^[1-5]{1}[0-9]{2}$/", $dataxls[3]) && $formatoCount < 30) {
+
+                                            $formato[$key . "-C"]['valor'] = $dataxls[3];
+                                            $formato[$key . "-C"]['linea'] = $key . " - C";
+                                            $formato[$key . "-C"]['error'] = "El campo debe ser numérico del 1 al 500";
+                                            $formatoCount++;
+                                        }
 
 
-                                    $formato[$key]['valor'] = $value[1];
-                                    $formato[$key]['linea'] = $key;
+                                        if ($dataxls[4] == '' && $formatoCount < 30) {
+
+                                            $formato[$key . "-D"]['valor'] = $dataxls[4];
+                                            $formato[$key . "-D"]['linea'] = $key . " - D";
+                                            $formatoCount++;
+                                        }
+                                    }
                                 }
-
-                                $dataxls[$value[1]] = $value[1];
                             }
 
+                            unlink(public_path() . "/" . $path . $fileName);
+                        }
 
-                            if ($dataxls) {
+                        if (!empty($dataxls_final)) {
 
-                                if (!$formato) {
+                            if ($formatoCount < 1) {
 
-                                    foreach ($dataxls as $key => $value) {
+                                $evaluacion = new EvaluacionModel();
 
-                                        $sms[] = $value;
-                                    }
+                                if (!$evaluacion->registrar_notificacion(array("data" => $request->input(), "data_detalle" => $dataxls_final,))) {
 
-                                    $this->params['datos'] = $dataxls;
-                                    $this->params['mensaje'] = 'exito';
-                                } else {
+                                    $this->params['mensaje'] = 'error';
+                                };
 
-                                    $this->params['datos'] = $formato;
-                                    $this->params['mensaje'] = 'error2';
-
-                                    unlink(public_path() . "/" . $path . $fileName);
-                                }
+                                $this->params['mensaje'] = 'exito';
                             } else {
 
-                                $this->params['mensaje'] = 'error';
-                                unlink(public_path() . "/" . $path . $fileName);
+                                $this->params['datos'] = $formato;
+                                $this->params['mensaje'] = 'error2';
                             }
-
-                            $estatus = true;
                         } else {
-                            unlink(public_path() . "/" . $path . $fileName);
 
-                            error_log(print_r("Error al cargar ", true));
+                            $this->params['mensaje'] = 'error';
                         }
+
+                        $estatus = true;
+                    } else {
+
+                        error_log(print_r("Error al cargar ", true));
                     }
+
                     break;
                 default:
                     error_log(print_r("Extension no valida :" . $mime, true));
@@ -164,10 +209,8 @@ class AdminJsonController extends Controller {
         if (!$estatus) {
 
             $this->params['mensaje'] = 'error';
-            unlink(public_path() . "/" . $path . $fileName);
         }
 
-        error_log(print_r($this->params, true));
 
         return response()->json($this->params);
     }

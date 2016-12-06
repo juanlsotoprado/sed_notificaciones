@@ -10,8 +10,6 @@
   | and give it the controller to call when that URI is requested.
   |
  */
-
-
 Route::group(['middleware' => ['Auth_ldap', 'RoleMiddleware:0']], function () {
 
     Route::get('/', function () {

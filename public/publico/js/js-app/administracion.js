@@ -341,6 +341,36 @@ mppeuct.controller('cargar_notificaciones', ["$scope", "$window", "$rootScope", 
         $scope.una = '10';
         extScope = $scope;
 
+
+        $scope.limpiar = function () {
+            $scope.formData = {};
+            $('#calc').fileinput('clear');
+        };
+
+        $scope.registrar = function () {
+
+            $.jAlert({'type': 'confirm',
+                'title': '¡Responder!',
+                'size': 'auto',
+                'theme': 'dark_green',
+                'backgroundColor': 'white',
+                'confirmQuestion': '¿Está seguro que desea cargar esta notificaciones?',
+                'confirmBtnText': 'Si',
+                'denyBtnText': 'No',
+                'showAnimation': 'zoomIn',
+                'hideAnimation': 'fadeOutDown',
+                'onConfirm': function () {
+
+                    $('#calc').fileinput('upload');
+
+                }, 'onDeny': function () {
+
+
+                }
+            });
+        };
+
+
         $('#calc').fileinput({
             language: 'es',
             uploadUrl: "procesar_notificaciones", // server
@@ -356,13 +386,32 @@ mppeuct.controller('cargar_notificaciones', ["$scope", "$window", "$rootScope", 
             elErrorContainer: "#errorBlockcalc",
             uploadExtraData: function () {
                 return {
-                    arch: "adjunto",
-                    numero_ficha: 10,
-                    codigo: "leoleo",
+                    anno: $('#anno').val(),
+                    periodo: $('#periodo').val(),
                     _token: $("input[name='_token']").val()
                 };
             },
             btnDefault: '<button type="{type}" tabindex="500" title="{title}" class="{css}"{status}>{icon}{label}</button>',
+        });
+
+
+
+        $('#calc').on('fileloaded', function (event, files, extra) {
+
+            $(".fileinput-upload-button").remove();
+            extScope.$apply(function () {
+                extScope.formData.calc = true;
+            });
+
+        });
+
+        $('#calc').on('filecleared', function (event) {
+
+            extScope.$apply(function () {
+
+                extScope.formData.calc = false;
+
+            });
         });
 
 
@@ -383,16 +432,31 @@ mppeuct.controller('cargar_notificaciones', ["$scope", "$window", "$rootScope", 
                     response = data.response, reader = data.reader;
 
             extScope.$apply(function () {
-                
+
                 console.log(response.datos);
 
                 extScope.correos = response.datos;
 
                 if (response.mensaje == "exito") {
 
-                    extScope.correos = response.datos;
-                } else if (response.mensaje == "error2") {
+                    $.jAlert({
+                        'title': '¡Éxito!',
+                        'content': 'Se han cargado estas notificaciones exitosamente.',
+                        'theme': 'dark_blue',
+                        'size': 'auto',
+                        'showAnimation': 'bounceInDown',
+                        'hideAnimation': 'bounceOutDown',
+                        'closeOnEsc': true, 'closeOnClick': true,
+                        'btns': {'text': 'Aceptar', 'theme': 'black',
+                            'onClick': function () {
+                                $scope.limpiar();
+                            }},
+                        'onClose': function () {
+                            $scope.limpiar();
+                        }
+                    });
 
+                } else if (response.mensaje == "error2") {
 
                     var msg = "<b style='color:black;font-size:16px'>Problemas al cargar el archivo, se consiguieron campos con formatos no válidos.</b><br><br><br>";
 
@@ -400,7 +464,7 @@ mppeuct.controller('cargar_notificaciones', ["$scope", "$window", "$rootScope", 
 
                         angular.forEach(response.datos, function (value2, key2) {
 
-                            msg += " * <b>linea: <em style='color :red;'>" + value2.linea + "</em></b> / <b>dato: <em style='color :red;'>" + value2.valor + "</em></b><hr></b>";
+                            msg += " * <b>linea: <em style='color :red;'>" + value2.linea + "</em></b> <br> <b>* Dato: <em style='color :#777;'>" + value2.valor + "</em></b><br><b>* Error:<em style='color :#337ab7;'> " + value2.error + "</em></b><hr></b>";
 
                         });
 
