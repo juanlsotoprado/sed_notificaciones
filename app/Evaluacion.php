@@ -9,7 +9,7 @@ class Evaluacion extends Model {
      */
 
     protected $table = 'evaluacion';
-    protected $fillable = ['fecha', 'estatus', 'id_usuario', 'id', 'anno', 'periodo'];
+    protected $fillable = ['fecha', 'estatus', 'id_usuario', 'id', 'anno', 'periodo', 'nombre_doc_subido', 'nombre_doc_actual'];
 
 
     public function evaluacion_id_usuario_fkey() {

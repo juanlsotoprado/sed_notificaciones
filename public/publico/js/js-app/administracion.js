@@ -25,7 +25,6 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
                 'hideAnimation': 'fadeOutDown',
                 'onConfirm': function () {
 
-
                     $http({
                         method: 'POST',
                         url: "/admin/set_estatus",
@@ -82,16 +81,11 @@ mppeuct.controller('Administracion', ["$scope", "$window", "$rootScope", 'ngProg
 
                     });
 
-
                 }, 'onDeny': function () {
-
 
                 }
             });
         };
-
-
-
 
         $scope.registrar = function () {
             var valor = $scope.modificar ? '<b>modificar</b>' : '<b>registrar</b>';

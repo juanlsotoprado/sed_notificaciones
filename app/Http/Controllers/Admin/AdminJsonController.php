@@ -95,7 +95,7 @@ class AdminJsonController extends Controller {
 
             $mime = $request->file('calc')->getMimeType();
             $extension = strtolower($request->file('calc')->getClientOriginalExtension());
-            $fileName = "calc." . $extension;
+            $fileName = "calc-" . date_timestamp_get($fecha) . "." . $extension;
             $path = "privado/docs/";
 
             switch ($mime) {
@@ -113,7 +113,45 @@ class AdminJsonController extends Controller {
                             //  error_log(print_r($data->sheets[0]['cells'], true));
 
                             if (!empty($data->sheets[0]['cells'])) {
+
                                 foreach ($data->sheets[0]['cells'] as $key => $value) {
+                                    if ($key > 1) {
+
+                                        if (empty($value[1]) && $formatoCount < 30) {
+
+                                            $formato[$key . "-A"]['valor'] = '';
+                                            $formato[$key . "-A"]['linea'] = $key . " - A";
+                                            $formato[$key . "-A"]['error'] = "Campo vacio";
+                                            $formatoCount++;
+                                        } else {
+
+                                            $temp_array[] = $value[1];
+                                        }
+                                    }
+                                }
+
+                                if ($formatoCount < 1) {
+                                    $res = array_diff($temp_array, array_diff(array_unique($temp_array), array_diff_assoc($temp_array, array_unique($temp_array))));
+
+
+                                    foreach (array_unique($res) as $k => $v) {
+
+                                        $temp = "";
+                                        foreach (array_keys($res, $v) as $value) {
+                                            $temp .= ($value + 2) . "-A / ";
+                                        }
+
+                                        if ($formatoCount < 30) {
+
+                                            $formato[$k . "duplicate"]['valor'] = $v;
+                                            $formato[$k . "duplicate"]['linea'] = $temp;
+                                            $formato[$k . "duplicate"]['error'] = "Campo repetido.";
+                                            $formatoCount++;
+                                        }
+                                    }
+                                }
+                                foreach ($data->sheets[0]['cells'] as $key => $value) {
+
                                     if ($key > 1) {
 
                                         for ($i = 1; $i < 5; $i++) {
@@ -122,13 +160,7 @@ class AdminJsonController extends Controller {
 
                                         $dataxls_final[] = $dataxls;
 
-                                        if ($dataxls[1] == '' && $formatoCount < 30) {
-
-                                            $formato[$key . "-A"]['valor'] = $dataxls[1];
-                                            $formato[$key . "-A"]['linea'] = $key . " - A";
-                                            $formato[$key . "-A"]['error'] = "Campo vacio";
-                                            $formatoCount++;
-                                        } else if (!preg_match("/^[1-9]*$/", $dataxls[1]) && $formatoCount < 30) {
+                                        if (!preg_match("/^[0-9]*$/", trim($dataxls[1])) && $formatoCount < 30) {
 
                                             $formato[$key . "-A"]['valor'] = $dataxls[1];
                                             $formato[$key . "-A"]['linea'] = $key . " - A";
@@ -154,7 +186,7 @@ class AdminJsonController extends Controller {
 
                                             $formato[$key . "-C"]['valor'] = $dataxls[3];
                                             $formato[$key . "-C"]['linea'] = $key . " - C";
-                                            $formato[$key . "-C"]['error'] = "El campo debe ser numérico del 1 al 500";
+                                            $formato[$key . "-C"]['error'] = "El campo debe ser numérico del 100 al 500";
                                             $formatoCount++;
                                         }
 
@@ -163,13 +195,13 @@ class AdminJsonController extends Controller {
 
                                             $formato[$key . "-D"]['valor'] = $dataxls[4];
                                             $formato[$key . "-D"]['linea'] = $key . " - D";
+                                            $formato[$key . "-D"]['error'] = "Campo vacio";
+
                                             $formatoCount++;
                                         }
                                     }
                                 }
                             }
-
-                            unlink(public_path() . "/" . $path . $fileName);
                         }
 
                         if (!empty($dataxls_final)) {
@@ -177,8 +209,13 @@ class AdminJsonController extends Controller {
                             if ($formatoCount < 1) {
 
                                 $evaluacion = new EvaluacionModel();
+                                
+                                $datax = $request->input();
+                                
+                                $datax['nombre_doc_subido'] = $request->file('calc')->getClientOriginalName();
+                                $datax['nombre_doc_actual'] = $fileName;
 
-                                if (!$evaluacion->registrar_notificacion(array("data" => $request->input(), "data_detalle" => $dataxls_final,))) {
+                                if (!$evaluacion->registrar_notificacion(array("data" => $datax, "data_detalle" => $dataxls_final))) {
 
                                     $this->params['mensaje'] = 'error';
                                 };
@@ -211,7 +248,13 @@ class AdminJsonController extends Controller {
             $this->params['mensaje'] = 'error';
         }
 
+                if($this->params['mensaje'] != "exito"){
+                    
+                               unlink(public_path() . "/" . $path . $fileName);
 
+                    
+                }
+                
         return response()->json($this->params);
     }
 

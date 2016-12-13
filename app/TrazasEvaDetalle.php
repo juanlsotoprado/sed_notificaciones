@@ -2,14 +2,14 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Traza extends Model {
+class TrazasEvaDetalle extends Model {
 
     /**
      * Generated
      */
 
-    protected $table = 'trazas';
-    protected $fillable = ['id', 'id_usuario', 'fecha', 'semestre', 'anno', 'cedula', 'nombre_completo', 'puntuacion', 'rango', 'fecha_registro'];
+    protected $table = 'trazas_eva_detalle';
+    protected $fillable = ['id', 'id_usuario', 'fecha', 'cedula', 'nombre_completo', 'puntuacion', 'rango', 'fecha_registro', 'anno', 'periodo', 'id_evaluacion'];
 
 
     public function mensaje_enviados_traza_id_usuario_fkey() {

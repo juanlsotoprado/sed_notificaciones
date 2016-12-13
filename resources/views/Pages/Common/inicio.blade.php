@@ -18,7 +18,7 @@ Notificaciones Sed
         </div>
         <div class="panel-body">
 
-            .......... Falta la información del flujo del sitema .....................
+            <h4 style="color: #999; font-weight: bold">Falta la información del flujo del sistema </h4>
         </div>
 
 

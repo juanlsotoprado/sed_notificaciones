@@ -5,12 +5,12 @@
 
     <div class="navbar-header" >
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Sistema de notificaciones</span>
+            <span class="sr-only">Sistema de notificaciones del SED </span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <em class="navbar-brand" > <b style="color: #a3303d;font-size: 20px" class=" fa fa-institution"></b><span style="font-size: 16px">&nbsp;Sistema de notificaciones &nbsp;</span>
+        <em class="navbar-brand" > <b style="color: #a3303d;font-size: 20px" class=" fa fa-institution"></b><span style="font-size: 16px">&nbsp;Sistema de notificaciones del SED &nbsp;</span>
 
 
         </em><br>
