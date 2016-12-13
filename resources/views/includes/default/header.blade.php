@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-default navbar-static-top barra-top " style="border-bottom: #bce8f1 1px solid;-webkit-box-shadow: -1px 29px 22px -23px rgba(0,0,0,0.43);
      -moz-box-shadow: -1px 29px 22px -23px rgba(0,0,0,0.43);
      box-shadow: -1px 29px 22px -23px rgba(0,0,0,0.43);">
@@ -63,10 +62,10 @@
                 @if (Session::get('id_perfil') == 4)
 
                 <li>
-                    <a href="{{ url('admin/Inicio')}}" class='{{ $params['page'] == "inicio"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Inicio</a>
+                    <a href="{{ url('analista/Inicio')}}" class='{{ $params['page'] == "inicio"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Inicio</a>
                 </li>
                 <li>
-                    <a href="{{ url('admin/cargar_notificaciones')}}" class='{{ $params['page'] == "cargar_notificaciones"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Cargar notificaciones</a>
+                    <a href="{{ url('analista/cargar_notificaciones')}}" class='{{ $params['page'] == "cargar_notificaciones"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Cargar notificaciones</a>
                 </li>
 
                 @endif

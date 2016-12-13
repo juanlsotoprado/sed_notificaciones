@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Common;
 use App\Models\Users\InternalUsersModel;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller {
 
@@ -32,16 +30,5 @@ class AdminController extends Controller {
         return view("Pages/administracion/admin_usuario", ['params' => $this->params]);
     }
 
-    public function cargar_notificaciones() {
-
-        $this->params['page'] = "cargar_notificaciones";
-        $internal_user = new InternalUsersModel();
-
-        $this->params['data']['users'] = $internal_user->Buscar_usuario_sistem();
-
-        //dd($this->params);
-        return view("Pages/administracion/cargar_notificaciones", ['params' => $this->params]);
-    }
-    
     
 }

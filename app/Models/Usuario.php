@@ -29,11 +29,11 @@ class Usuario extends Model {
     }
 
     public function evaluacion_id_usuario_fkey() {
-        return $this->hasMany(\App\Models\EvaluacionDetalle::class, 'id_usuario', 'id');
+        return $this->hasMany(\App\Models\TrazaEva::class, 'id_usuario', 'id');
     }
 
     public function evaluacion_id_usuario_fkey() {
-        return $this->hasMany(\App\Models\TrazaEva::class, 'id_usuario', 'id');
+        return $this->hasMany(\App\Models\EvaluacionDetalle::class, 'id_usuario', 'id');
     }
 
 
