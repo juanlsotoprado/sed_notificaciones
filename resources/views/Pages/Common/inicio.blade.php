@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Notificaciones Sed
+{{ $params['page']}}
 @stop
 
 @section('content')

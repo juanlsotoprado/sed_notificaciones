@@ -33,6 +33,11 @@ class RoleMiddleware {
                 case 4:
                     return redirect('analista');
                     break;
+                
+                 case 6:
+                    return redirect('otic');
+                    break;
+
 
                 default :
                     error_log('perfil de usuario no encontrado');

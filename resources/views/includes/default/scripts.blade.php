@@ -38,6 +38,8 @@
 <script src="{{ url('publico/js/js-app/inicio.js')}}"type="text/javascript"></script>
 <script src="{{ url('publico/js/js-app/administracion.js')}}"type="text/javascript"></script>
 <script src="{{ url('publico/js/js-app/cargar_notificaciones.js')}}"type="text/javascript"></script>
+<script src="{{ url('publico/js/js-app/historial_carga.js')}}"type="text/javascript"></script>
+
 
 <script type="text/javascript">var tipo_user = '{{Request::segment(1)}}';</script>
 

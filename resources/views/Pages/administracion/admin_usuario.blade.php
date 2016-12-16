@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Administrar Funcionarios
+{{ $params['page']}}
 @stop
 
 @section('content')

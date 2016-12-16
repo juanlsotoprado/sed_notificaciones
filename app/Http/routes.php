@@ -25,6 +25,27 @@ Route::post('login', 'Login\LoginController@Validar_Ususario');
 Route::get('logout', 'Login\LoginController@Cerrar_Sesion');
 
 
+
+Route::group(['middleware' => 'RoleMiddleware:6', 'prefix' => 'otic'], function() {
+
+    Route::get('/', function () {
+
+        return Redirect::to('otic/Inicio');
+    });
+
+    Route::get('Inicio', 'App\AppController@Inicio');
+    Route::get('admin_usuario', 'Admin\AdminController@admin_usuario');
+    Route::get('cargar_notificaciones', 'App\AppController@cargar_notificaciones');
+    Route::get('historial_carga', 'App\AppController@historial_carga');
+
+    
+    Route::post('get_user', 'Admin\AdminJsonController@get_usuario');
+    Route::post('get_perfiles', 'Admin\AdminJsonController@get_perfiles');
+    Route::post('registrar_modificar_funcionario', 'Admin\AdminJsonController@registrar_modificar_funcionario');
+    Route::post('set_estatus', 'Admin\AdminJsonController@set_estatus');
+    Route::post('procesar_notificaciones', 'App\AppJsonController@procesar_notificaciones');
+});
+
 Route::group(['middleware' => 'RoleMiddleware:1', 'prefix' => 'admin'], function() {
 
     Route::get('/', function () {
