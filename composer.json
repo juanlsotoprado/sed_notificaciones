@@ -16,7 +16,9 @@
         "symfony/dom-crawler": "2.8.*|3.0.*",
         "xethron/migrations-generator": "^2.0",
         "way/generators": "dev-feature/laravel-five-stable",
-        "user11001/eloquent-model-generator": "  ~2.0"
+        "user11001/eloquent-model-generator": "  ~2.0",
+        "orangehill/iseed": "2.2"
+
     },
     "autoload": {
         "classmap": [
