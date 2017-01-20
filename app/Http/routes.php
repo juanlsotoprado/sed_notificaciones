@@ -30,7 +30,7 @@ Route::group(['middleware' => 'RoleMiddleware:6', 'prefix' => 'otic'], function(
 
     Route::get('/', function () {
 
-        return Redirect::to('otic/Inicio');
+        return Redirect::to('otic/historial_carga');
     });
 
     Route::get('Inicio', 'App\AppController@Inicio');
@@ -50,7 +50,7 @@ Route::group(['middleware' => 'RoleMiddleware:1', 'prefix' => 'admin'], function
 
     Route::get('/', function () {
 
-        return Redirect::to('admin/Inicio');
+        return Redirect::to('admin/cargar_notificaciones');
     });
 
     Route::get('Inicio', 'App\AppController@Inicio');
@@ -71,7 +71,7 @@ Route::group(['middleware' => 'RoleMiddleware:4', 'prefix' => 'analista'], funct
 
     Route::get('/', function () {
 
-        return Redirect::to('analista/Inicio');
+        return Redirect::to('analista/cargar_notificaciones');
     });
 
     Route::get('cargar_notificaciones', 'App\AppController@cargar_notificaciones');

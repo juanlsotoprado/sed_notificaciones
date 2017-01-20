@@ -50,7 +50,6 @@ class AppJsonController extends Controller {
                             $data->setOutputEncoding('CP1251');
                             $data->read(public_path() . "/" . $path . $fileName);
                             $formatoCount = 0;
-                            //  error_log(print_r($data->sheets[0]['cells'], true));
 
                             if (!empty($data->sheets[0]['cells'])) {
 
@@ -122,14 +121,7 @@ class AppJsonController extends Controller {
                                             $formato[$key . "-C"]['linea'] = $key . " - C";
                                             $formato[$key . "-C"]['error'] = "Campo vacio";
                                             $formatoCount++;
-                                        } else if (!preg_match("/^[1-5]{1}[0-9]{2}$/", $dataxls[3]) && $formatoCount < 30) {
-
-                                            $formato[$key . "-C"]['valor'] = $dataxls[3];
-                                            $formato[$key . "-C"]['linea'] = $key . " - C";
-                                            $formato[$key . "-C"]['error'] = "El campo debe ser numérico del 100 al 500";
-                                            $formatoCount++;
                                         }
-
 
                                         if ($dataxls[4] == '' && $formatoCount < 30) {
 
@@ -144,16 +136,22 @@ class AppJsonController extends Controller {
                             }
                         }
 
+
                         if (!empty($dataxls_final)) {
 
                             if ($formatoCount < 1) {
 
+
                                 $evaluacion = new EvaluacionModel();
-                                
+
                                 $datax = $request->input();
-                                
+
                                 $datax['nombre_doc_subido'] = $request->file('calc')->getClientOriginalName();
                                 $datax['nombre_doc_actual'] = $fileName;
+
+
+                                error_log(print_r($this->params, true));
+
 
                                 if (!$evaluacion->registrar_notificacion(array("data" => $datax, "data_detalle" => $dataxls_final))) {
 
@@ -170,6 +168,8 @@ class AppJsonController extends Controller {
 
                             $this->params['mensaje'] = 'error';
                         }
+
+
 
                         $estatus = true;
                     } else {
@@ -188,13 +188,12 @@ class AppJsonController extends Controller {
             $this->params['mensaje'] = 'error';
         }
 
-                if($this->params['mensaje'] != "exito"){
-                    
-             unlink(public_path() . "/" . $path . $fileName);
+        if ($this->params['mensaje'] != "exito") {
 
-                    
-                }
-                
+            unlink(public_path() . "/" . $path . $fileName);
+        }
+
+
         return response()->json($this->params);
     }
 

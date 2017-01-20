@@ -101,11 +101,6 @@ class EvaluacionModel extends Model {
         }
 
         return false;
-    }
-    
-    pamelapascuale@yahoo.com
-    04166213729
-    pdipas.584y0z+2-ogezdinbqg42dgnbv@mail.mercadolibre.com.ve
-            
+    }       
 
 }

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "606c57f329482b9dcabb3889195c14aa",
-    "content-hash": "689d2815d8a507d83378220ee73d3663",
+    "hash": "4537bf7b0cf48d0305e121083e2e8a12",
+    "content-hash": "01e7ff44e9f14c66ef70eaad4b025945",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -3568,8 +3568,14 @@
             "version": "dev-feature/laravel-five-stable",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jamisonvalenta/Laravel-4-Generators.git",
+                "url": "https://github.com/jamisonvalenta/Laravel-4-Generators.git",
                 "reference": "a358bb44f517e2b3c1fd4f848f2646857c75b3a4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jamisonvalenta/Laravel-4-Generators/zipball/a358bb44f517e2b3c1fd4f848f2646857c75b3a4",
+                "reference": "a358bb44f517e2b3c1fd4f848f2646857c75b3a4",
+                "shasum": ""
             },
             "require": {
                 "illuminate/support": "~5.0",
@@ -3600,6 +3606,9 @@
                 }
             ],
             "description": "Rapidly generate resources, migrations, models, and much more.",
+            "support": {
+                "source": "https://github.com/jamisonvalenta/Laravel-4-Generators/tree/feature/laravel-five-stable"
+            },
             "time": "2015-02-17 06:26:25"
         },
         {
@@ -3654,16 +3663,16 @@
         },
         {
             "name": "xethron/migrations-generator",
-            "version": "dev-l5",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Xethron/migrations-generator.git",
-                "reference": "b7539dcad0ae072a4891340f679c8df5605aba2a"
+                "reference": "aa7985074e47fed6a3cc14c1ebc5f9ec3a69a709"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Xethron/migrations-generator/zipball/b7539dcad0ae072a4891340f679c8df5605aba2a",
-                "reference": "b7539dcad0ae072a4891340f679c8df5605aba2a",
+                "url": "https://api.github.com/repos/Xethron/migrations-generator/zipball/aa7985074e47fed6a3cc14c1ebc5f9ec3a69a709",
+                "reference": "aa7985074e47fed6a3cc14c1ebc5f9ec3a69a709",
                 "shasum": ""
             },
             "require": {
@@ -3702,13 +3711,12 @@
                 "migration",
                 "migrations"
             ],
-            "time": "2016-11-07 06:24:16"
+            "time": "2016-11-20 14:29:11"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "xethron/migrations-generator": 20,
         "way/generators": 20
     },
     "prefer-stable": false,

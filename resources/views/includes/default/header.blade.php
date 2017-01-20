@@ -46,10 +46,10 @@
 
 
                 @if (Session::get('id_perfil') == 1)
-
+<!--
                 <li>
                     <a href="{{ url('admin/Inicio')}}" class='{{ $params['page'] == "inicio"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Inicio</a>
-                </li>
+                </li>-->
                 <li>
                     <a href="{{ url('admin/admin_usuario')}}" class='{{ $params['page'] == "admin_usuario"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Administarción de usuario</a>
                 </li>
@@ -61,9 +61,9 @@
 
                 @if (Session::get('id_perfil') == 4)
 
-                <li>
+<!--                <li>
                     <a href="{{ url('analista/Inicio')}}" class='{{ $params['page'] == "inicio"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Inicio</a>
-                </li>
+                </li>-->
                 <li>
                     <a href="{{ url('analista/cargar_notificaciones')}}" class='{{ $params['page'] == "cargar_notificaciones"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Cargar notificaciones</a>
                 </li>
@@ -72,9 +72,9 @@
 
                 @if (Session::get('id_perfil') == 6)
 
-                <li>
+<!--                <li>
                     <a href="{{ url('otic/Inicio')}}" class='{{ $params['page'] == "inicio"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Inicio</a>
-                </li>
+                </li>-->
                 <li>
                     <a href="{{ url('otic/admin_usuario')}}" class='{{ $params['page'] == "admin_usuario"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Administarción de usuario</a>
                 </li>
@@ -83,7 +83,7 @@
                 </li>
                 
                 <li>
-                    <a href="{{ url('otic/historial_carga')}}" class='{{ $params['page'] == "historial_Carga"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Historial de cargar</a>
+                    <a href="{{ url('otic/historial_carga')}}" class='{{ $params['page'] == "historial_carga"? "active":"" }}'><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;Historial de cargar</a>
                 </li>
 
                 @endif

@@ -21,8 +21,8 @@
 
                 <fieldset style="text-align: left;"  >
 
-                    <div class="table-responsive"> 
-                        <table table class="display cell-border hover order-column stripe tabla_consulta table-responsive"  cellspacing="0" width="100%">
+                    <div class=" "> 
+                        <table table class="display cell-border hover order-column stripe tabla_consulta"  cellspacing="0" width="100%">
                             <col style="width: 2%">
 
                             <thead>
@@ -53,12 +53,12 @@
 
                                     <td>{{$historial->anno}}</td>
                                     <td>{{$historial->periodo == 1?'Primero':'Segundo'}} </td>
-                                    <td> {{$historial->fecha}} </td>
+                                    <td>{{$historial->fecha}} </td>
                                     <td>{{$historial->nombre_doc_subido}} </td>
-                                    <td> {{$historial->nombre_doc_actual}} </td>
+                                    <td>{{$historial->nombre_doc_actual}} </td>
                                     <td>{{$historial->cedula}} </td>
                                     <td>{{$historial->nombre_apellido}} </td>
-                                    <td>{{$historial->estatus == 1?'Activo':'Inactivo'}} </td>
+                                    <td class="{{$historial->estatus == 1?'text-success':'text-danger'}}"> {{$historial->estatus == 1?'Activo':'Inactivo'}} </td>
 
 
                                     <td style="text-align: left;">
@@ -72,7 +72,6 @@
                                 @endphp
                                 @endforeach
                                 @endif
-
 
                             </tbody>
                         </table>
